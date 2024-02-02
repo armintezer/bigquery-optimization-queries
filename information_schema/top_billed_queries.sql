@@ -28,6 +28,7 @@ BEGIN
         ROW_NUMBER() OVER(PARTITION BY job_id ORDER BY end_time DESC) AS _rnk
       FROM
         `<project-name>`.`<dataset-region>`.INFORMATION_SCHEMA.JOBS_BY_PROJECT
+        -- e.g. `myproject`.`region-eu`.INFORMATION_SCHEMA.JOBS_BY_USER;
       WHERE
         creation_time BETWEEN TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL interval_in_days DAY)
         AND CURRENT_TIMESTAMP()
